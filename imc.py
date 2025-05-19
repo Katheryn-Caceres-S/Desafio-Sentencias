@@ -1,18 +1,20 @@
 import sys
 
-if len(sys.argv) != 2:
-    print ("python ejemplo.py [ingreso]")
-  
+if len(sys.argv) != 3:
+    print("Uso correcto: python imc.py [peso] [altura]")
+    sys.exit()
+
+try:
     peso = float(sys.argv[1])
     altura = float(sys.argv[2])
-    imc = peso / (altura ** 2)
+except ValueError:
+    print("Error: asegúrate de que el peso y la altura sean números.")
+    sys.exit()
 
-else:
-    nombre = sys.argv [1]
-    print(f"{nombre}")    
+imc = peso / (altura ** 2)
 
 print(f"Su peso es: {peso} kg. y su altura es: {altura} metros")
-print(f"Su IMC es : {imc:.2f}")
+print(f"Su IMC es: {imc:.2f}")
 
 if imc < 18.5:
   print("La clasificación OMS es Bajo Peso")

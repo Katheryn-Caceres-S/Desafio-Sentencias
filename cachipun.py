@@ -1,41 +1,30 @@
 import random
 import sys
 
+opciones = ["piedra", "papel", "tijera"]
 
 if len(sys.argv) != 2:
-    print ("python ejemplo.py [ingreso]")
+    print("Uso correcto: python juego.py [piedra|papel|tijera]")
+    sys.exit()
 
-opciones = sys.argv[1]
-opciones = ["piedra", "papel", "tijeras"]
-
-while True:
-    jugador = input ("elije piedra, papel o tijeras o escribe 'salir' ")
-
-    if jugador =="salir":
-        print ("juego terminado!!")
-        break
-
-    if jugador not in opciones:
-        print ("opcion no valida..")
-        continue
-
-  computador = random.choices(opciones)
-
-  print(f"el jugador eligio {jugador}")
-  print(f"el jugador eligio {computador}")
+jugador = sys.argv[1].lower()
 
 
-  if jugador == computador:
-    print ("empate!...")
+if jugador not in opciones:
+    print("Argumento invalido: Debe ser piedra, papel o tijera.")
+    sys.exit()
 
-  elif jugador == "piedra" and computador ==" tijeras":
-    print("ganaste")
+computador = random.choice(opciones)
 
-  elif jugador == "papel" and computador ==" piedra":
-    print ("ganaste")
+print(f"Tu jugaste: {jugador}")
+print(f"El computador jugó: {computador}")
 
-  elif jugador == "tijeras" and computador =="papel":
-    print ("ganaste")
 
-  else:
-    print ("perdiste!!") 
+if jugador == computador:
+    print("¡Empate!")
+elif (jugador == "piedra" and computador == "tijera") or \
+     (jugador == "papel" and computador == "piedra") or \
+     (jugador == "tijera" and computador == "papel"):
+    print("¡Ganaste!")
+else:
+    print("¡Perdiste!")
